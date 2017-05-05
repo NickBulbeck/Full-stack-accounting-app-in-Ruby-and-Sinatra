@@ -1,0 +1,1 @@
+From time to time it will be necessary to try things out, save experimental copies of diagrams, etc, and I'll need a repository for this. The Scribbles folder is set aside for that purpose.
