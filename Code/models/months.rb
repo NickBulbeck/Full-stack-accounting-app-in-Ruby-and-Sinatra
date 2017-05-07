@@ -12,11 +12,4 @@ attr_reader :id, :name, :start_date, :end_date
     @end_date = params['end_date']
   end
 
-  def Month.delete_all()
-    sql = "
-      DELETE FROM months;
-    "
-    SqlRunner.run(sql)
-  end
-
 end
