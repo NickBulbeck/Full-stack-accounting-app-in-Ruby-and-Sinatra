@@ -43,6 +43,17 @@ class TestTransactions < MiniTest::Test
     assert_equal(1,result)
   end
 
+  def test_can_read_hardcoded_id
+    test_transaction = Transaction.new({
+      'id' => 1,
+      'transaction_date' => '2017-05-01',
+      'payee' => 'Co-Op',
+      'amount' => 5.41,
+      'category_id' => 1 
+    })
+    result = test_transaction.id
+    assert_equal(1,result)
+  end
 end
 
 
