@@ -9,5 +9,9 @@ class TestCategories < MiniTest::Test
     # @category1 = Category.new()
   end
 
+  def can_create_category
+
+
+  end
 
 end

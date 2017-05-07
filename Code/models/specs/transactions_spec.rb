@@ -9,4 +9,14 @@ class TestTransactions < MiniTest::Test
     # @transaction1 = Transaction.new()
   end
 
+  def test_can_create_transaction
+    test_transaction = Transaction.new({
+      'transaction_date' => '2017-05-01',
+      'payee' => 'Co_op',
+      'amount' => 5.41,
+      'category_id' => 1 
+    })
+
+  end
+
 end
