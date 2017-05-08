@@ -1,5 +1,6 @@
 require('pg')
 require_relative('../db/sql_runner.rb')
+require_relative('./transactions.rb')
 
 class Category
 
@@ -70,35 +71,53 @@ class Category
       SELECT * FROM categories WHERE
       id = #{search_id};
     "
-    category_hashes = SqlRunner.run(sql)
-    category_hash = category_hashes.first()
-    category = Category.new(category_hash)
-    return category
+    pg_output = SqlRunner.run(sql)
+    category = unpack_array(pg_output)
+    return category[0]
   end
 
   def Category.display_all
     sql = "
       SELECT * FROM categories;
     "
-    search_output = SqlRunner.run(sql)
-    category_hashes = search_output.map {
+    pg_output = SqlRunner.run(sql)
+    categories = unpack_array(pg_output)
+    return categories
+  end
+
+  def display_all_transactions()
+    sql = "
+      SELECT * FROM transactions WHERE
+      category_id = #{@id}
+    "
+    # search_output = SqlRunner.run(sql)
+    # transaction_hashes = search_output.map {
+    #   |transaction_hash| Transaction.new(transaction_hash)
+    # }
+    # return transaction_hashes
+    pg_output = SqlRunner.run(sql)
+    transactions = Transaction.unpack_array(pg_output)
+    return transactions
+  end
+
+  def total_spend()
+    sql = "
+      SELECT SUM(amount) FROM transactions
+      WHERE category_id = #{@id}
+    "
+    pg_output = SqlRunner.run(sql)
+    total_spend = pg_output[0]["sum"].to_f
+    return total_spend
+  end
+
+  def self.unpack_array(pg_output)
+    categories = pg_output.map {
       |category_hash|
       Category.new(category_hash)
     }
-    return category_hashes
+    return categories
   end
 
-  def display_all_transactions(search_id)
-    sql = "
-      SELECT * FROM transactions WHERE
-      category_id = #{search_id}
-    "
-    search_output = SqlRunner.run(sql)
-    transaction_hashes = search_output.map {
-      |transaction_hash| Transaction.new(transaction_hash)
-    }
-    return transaction_hashes
-  end
 
 end
 

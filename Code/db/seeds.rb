@@ -35,19 +35,33 @@ Category.delete_all()
   @leisure.save()
 
   @transaction1 = Transaction.new({
-    "transaction_date" => "2017_01_02",
+    "transaction_date" => "2017_02_28",
     "payee" => "Co-Op",
     "amount" => 8.32,
     "category_id" => @groceries.id
     })
   @transaction1.save()
   @transaction2 = Transaction.new({
-    "transaction_date" => "2017_05_08",
+    "transaction_date" => "2017_01_31",
+    "payee" => "Co-Op",
+    "amount" => 8.32,
+    "category_id" => @groceries.id
+    })
+  @transaction2.save()
+  @transaction3 = Transaction.new({
+    "transaction_date" => "2017_02_01",
+    "payee" => "Tesco",
+    "amount" => 78.32,
+    "category_id" => @groceries.id
+    })
+  @transaction3.save()
+  @transaction4 = Transaction.new({
+    "transaction_date" => "2017_03_01",
     "payee" => "Beatsons",
     "amount" => 16.22,
     "category_id" => @leisure.id
     })
-  @transaction2.save()
+  @transaction4.save()
 binding.pry
 
 puts "Test-run complete"

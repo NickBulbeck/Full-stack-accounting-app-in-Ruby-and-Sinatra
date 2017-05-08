@@ -55,31 +55,67 @@ class Transaction
       SELECT * FROM transactions WHERE
       id = #{search_id};
     "
-    transaction_hashes = SqlRunner.run(sql)
-    transaction_hash = transaction_hashes.first()
-    transaction = Transaction.new(transaction_hash)
-    return transaction
+    pg_output = SqlRunner.run(sql)
+    transaction = unpack_array(pg_output)
+    return transaction[0]
   end
 
   def Transaction.display_all
     sql = "
       SELECT * FROM transactions;
     "
-    result = SqlRunner.run(sql)
-    transaction_hashes = result.map {
+    pg_output = SqlRunner.run(sql)
+    transactions = unpack_array(pg_output)
+    return transactions
+  end
+
+  def Transaction.display_by_month(search_month)
+    sql = "SELECT * FROM transactions WHERE
+        transaction_date >=
+          (SELECT start_date FROM months WHERE
+          name = '#{search_month}')
+      AND
+        transaction_date <=
+          (SELECT end_date FROM months WHERE
+           name = '#{search_month}');
+    "
+    pg_output = SqlRunner.run(sql)
+    transactions = unpack_array(pg_output)
+    return transactions
+  end
+
+  def Transaction.display_by_dates(start_date,end_date)
+    sql = "
+      SELECT * FROM transactions WHERE
+       transaction_date >= '#{start_date}'
+       AND
+       transaction_date <= '#{end_date}';
+    "
+    pg_output = SqlRunner.run(sql)
+    transactions = unpack_array(pg_output)
+    return transactions
+  end
+
+  def self.unpack_array(pg_output)
+    transaction_hashes = pg_output.map {
       |transaction_hash|
       Transaction.new(transaction_hash)
     }
     return transaction_hashes
   end
 
-  # def Transaction.display_by_month(search_month)
+  def Transaction.total_spend()
+    sql = "
+    SELECT SUM(amount) FROM transactions;
+    "
+    pg_output = SqlRunner.run(sql)
+    total_spend = pg_output[0]["sum"].to_f
+# .to_f because it may be useful to perform
+# arithmetic functions with it...
+    return total_spend
+  end
 
-  # end
 
-  # def Transaction.display_between_dates(start_date,end_date)
-  # end
-  
 end
 
 

@@ -18,7 +18,7 @@ CREATE TABLE transactions (
 
 CREATE TABLE months (
   id SERIAL4 PRIMARY KEY,
-  name VARCHAR(255),
+  name VARCHAR(255) UNIQUE,
   start_date DATE,
   end_date DATE
 );
