@@ -36,6 +36,50 @@ class Transaction
     @id = transaction_data.first()['id'].to_i
   end
 
+  def update(params)
+    sql = "
+    "
+
+  end
+
+  def delete()
+    sql = "
+      DELETE FROM transactions WHERE
+      id = #{@id};
+    "
+    SqlRunner.run(sql)
+  end
+
+  def Transaction.find_by_id(search_id)
+    sql = "
+      SELECT * FROM transactions WHERE
+      id = #{search_id};
+    "
+    transaction_hashes = SqlRunner.run(sql)
+    transaction_hash = transaction_hashes.first()
+    transaction = Transaction.new(transaction_hash)
+    return transaction
+  end
+
+  def Transaction.display_all
+    sql = "
+      SELECT * FROM transactions;
+    "
+    result = SqlRunner.run(sql)
+    transaction_hashes = result.map {
+      |transaction_hash|
+      Transaction.new(transaction_hash)
+    }
+    return transaction_hashes
+  end
+
+  # def Transaction.display_by_month(search_month)
+
+  # end
+
+  # def Transaction.display_between_dates(start_date,end_date)
+  # end
+  
 end
 
 

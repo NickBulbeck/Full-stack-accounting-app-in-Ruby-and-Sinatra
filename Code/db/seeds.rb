@@ -13,6 +13,26 @@ Category.delete_all()
       "budget" => 5200
     })
   @groceries.save()
+  @travel = Category.new({
+      "name" => "Travel",
+      "budget" => 2500
+    })
+  @travel.save()
+  @clothing = Category.new({
+      "name" => "Clothing",
+      "budget" => 200
+    })
+  @clothing.save()
+  @weans = Category.new({
+      "name" => "Weans",
+      "budget" => 3000
+    })
+  @weans.save()
+  @leisure = Category.new({
+      "name" => "Leisure",
+      "budget" => 1000
+    })
+  @leisure.save()
 
   @transaction1 = Transaction.new({
     "transaction_date" => "2017_01_02",
@@ -21,6 +41,13 @@ Category.delete_all()
     "category_id" => @groceries.id
     })
   @transaction1.save()
+  @transaction2 = Transaction.new({
+    "transaction_date" => "2017_05_08",
+    "payee" => "Beatsons",
+    "amount" => 16.22,
+    "category_id" => @leisure.id
+    })
+  @transaction2.save()
 binding.pry
 
 puts "Test-run complete"
