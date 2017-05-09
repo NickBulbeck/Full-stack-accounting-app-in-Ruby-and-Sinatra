@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nick's Budget App</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Merriweather|Special+Elite" rel="stylesheet"> -->
+  
+  <link rel="icon" href="/images/test.jpg" />
+
+  <link rel="stylesheet" type="text/css" href="/reset.css">
+  <link rel="stylesheet" type="text/css" href="/main.css">
+</head>
+<body>
+  <% if Transaction.total_spend < Category.total_budget
+      @background_image = "'images/test.jpg'"
+      else
+      @background_image = ""
+      end %>
+<!-- NTS: name the class above, and alter the class name -->
+  <main style = " background-image: url(<%= @background_image %>)" >
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="/categories">View all categories</a>
+          </li>
+          <li>
+            <a href="/transactions">View all transactions</a>
+          </li>
+          <li>
+            <a href="/months">View all months</a>
+          </li>
+          <li>
+            <a href="/">Home</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+    <%= yield %>
+    </section>
+  </main>
+</body>
+</html>

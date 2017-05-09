@@ -1,0 +1,30 @@
+<h2>Update transaction</h2>
+  <p>Update as required, and click "Save changes" when finished.</p>
+
+
+<form action="/transactions/<%= @transaction.id%>" method ="POST" >
+<!-- first name, last name, topping and quantity -->
+  <input id="idBox", type="hidden", name = "id", value="<%=@transaction.id%>" readonly class="narrowInput" />
+
+  <label for="dateBox" >Date (YYYY-MM-DD): </label>
+  <input id = "dateBox", type = "date" name = "transaction_date" value="<%=@transaction.transaction_date%>"/>
+<!-- for and id must match; name must match the instance variable name in the database -->
+  <label for="payeeBox" >Payee: </label>
+  <input id = "payeeBox" type = "text" name = "payee" value="<%=@transaction.payee%>"/>
+  
+  <label for = "amountBox">Amount:</label>
+  <input id = "payeeBox" type = "numbe" name = "amount" value="<%=@transaction.amount%>"/>
+
+  <label for = "categorySelect">Select a category:</label>
+    <select id = "categorySelect" name="category_id">
+      <% for category in @categories %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+      <% end %>
+    </select>
+<!-- Note to self: the value property is the value sent back to the server -->
+
+  <input type = "submit" value="Save changes"/>
+
+</form>
+
+

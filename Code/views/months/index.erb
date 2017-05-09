@@ -1,0 +1,34 @@
+<h1>All months</h1>
+  <p>
+    <a href="/transactions/new">Add a new transaction</a>
+  </p>
+  <p>
+    <a href="/categories/new">Add a new category</a>
+  </p>
+
+  <% monthly_budget = (Category.total_budget)/12 %>
+  <p>Total monthly budget: £<%= monthly_budget  %></p>
+<table>
+  <tr>
+    <th>Month</th>
+    <th>Number of transactions</th>
+    <th>Total spend</th>
+  </tr>
+  <% for month in @months %>
+  <% total_spend = Transaction.total_by_month(month.name)
+     total_transactions = Transaction.display_by_month(month.name).count
+     if total_spend < (monthly_budget * 0.9)
+        rag_status = "monthGreen"
+      elsif total_spend < monthly_budget
+        rag_status = "monthAmber"
+      else
+        rag_status = "monthRed"
+      end %>
+  <tr >
+    <td ><%= month.name %></td>
+    <td ><%= total_transactions %></td>
+    <td class = "<%=rag_status%>"><%= total_spend %></td>
+    <td><a href="/months/<%=month.id%>">View transactions</a></td>
+  </tr>
+<% end %>
+</table>

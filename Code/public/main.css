@@ -1,0 +1,35 @@
+body {
+  font-family:sans-serif;
+  background-color:#EEEEEE;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 900;
+  color: firebrick;
+  margin-bottom: 10px;
+}
+
+table, tr, th, td {
+  border:1px black solid;
+}
+
+main {
+  height: 1200px;
+}
+
+.monthGreen {
+  background-color:green;
+}
+.monthAmber {
+  background-color: yellow;
+}
+.monthRed {
+  background-color: red;
+}
+/*tr {
+  border:1px black solid;
+}
+td {
+  border:1px black solid;
+}*/

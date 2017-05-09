@@ -58,10 +58,11 @@ class Category
     end
   end
 
-  def delete()
+
+  def Category.destroy(kill_id)
     sql = "
       DELETE FROM categories WHERE
-      id = #{@id};
+      id = #{kill_id}
     "
     SqlRunner.run(sql)
   end
@@ -78,7 +79,8 @@ class Category
 
   def Category.display_all
     sql = "
-      SELECT * FROM categories;
+      SELECT * FROM categories
+      ORDER BY name ASC;
     "
     pg_output = SqlRunner.run(sql)
     categories = unpack_array(pg_output)
@@ -89,12 +91,8 @@ class Category
     sql = "
       SELECT * FROM transactions WHERE
       category_id = #{@id}
+      ORDER BY transaction_date ASC;
     "
-    # search_output = SqlRunner.run(sql)
-    # transaction_hashes = search_output.map {
-    #   |transaction_hash| Transaction.new(transaction_hash)
-    # }
-    # return transaction_hashes
     pg_output = SqlRunner.run(sql)
     transactions = Transaction.unpack_array(pg_output)
     return transactions
@@ -118,6 +116,14 @@ class Category
     return categories
   end
 
+  def Category.total_budget()
+    sql = "
+    SELECT SUM(budget) FROM categories
+    "
+    pg_output = SqlRunner.run(sql)
+    budget = pg_output[0]["sum"].to_i
+    return budget
+  end
 
 end
 

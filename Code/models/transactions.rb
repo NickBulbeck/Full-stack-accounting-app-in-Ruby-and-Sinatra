@@ -36,16 +36,25 @@ class Transaction
     @id = transaction_data.first()['id'].to_i
   end
 
-  def update(params)
+  def update()
     sql = "
+      UPDATE transactions SET
+      (transaction_date,payee,amount,category_id) =
+      ('#{@transaction_date}',
+       '#{@payee}',
+       '#{@amount}',
+       '#{@category_id}'
+      )
+      WHERE id = #{@id}
     "
-
+    SqlRunner.run(sql)
   end
 
-  def delete()
+
+  def Transaction.destroy(kill_id)
     sql = "
       DELETE FROM transactions WHERE
-      id = #{@id};
+      id = #{kill_id}
     "
     SqlRunner.run(sql)
   end
@@ -62,7 +71,8 @@ class Transaction
 
   def Transaction.display_all
     sql = "
-      SELECT * FROM transactions;
+      SELECT * FROM transactions
+      ORDER BY transaction_date ASC;
     "
     pg_output = SqlRunner.run(sql)
     transactions = unpack_array(pg_output)
@@ -77,13 +87,31 @@ class Transaction
       AND
         transaction_date <=
           (SELECT end_date FROM months WHERE
-           name = '#{search_month}');
+           name = '#{search_month}')
+           ORDER BY transaction_date ASC;
     "
     pg_output = SqlRunner.run(sql)
     transactions = unpack_array(pg_output)
     return transactions
   end
 
+  def Transaction.total_by_month(search_month)
+    sql = "SELECT SUM(amount) FROM transactions WHERE
+        transaction_date >=
+          (SELECT start_date FROM months WHERE
+          name = '#{search_month}')
+      AND
+        transaction_date <=
+          (SELECT end_date FROM months WHERE
+           name = '#{search_month}');
+    "
+    pg_output = SqlRunner.run(sql)
+    total_spend = pg_output[0]["sum"].to_f
+
+    return total_spend
+  end
+
+# Never got around to using this one, but it's interesting anyway:
   def Transaction.display_by_dates(start_date,end_date)
     sql = "
       SELECT * FROM transactions WHERE
@@ -95,6 +123,18 @@ class Transaction
     transactions = unpack_array(pg_output)
     return transactions
   end
+
+  def Transaction.display_by_category(search_id)
+    sql = "
+      SELECT * FROM transactions WHERE
+       category_id = #{search_id}
+       ORDER BY transaction_date ASC;
+    "
+    pg_output = SqlRunner.run(sql)
+    transactions = unpack_array(pg_output)
+    return transactions
+  end
+
 
   def self.unpack_array(pg_output)
     transaction_hashes = pg_output.map {

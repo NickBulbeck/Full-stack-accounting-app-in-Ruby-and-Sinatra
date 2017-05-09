@@ -1,0 +1,33 @@
+<h1><%=@month.name%></h1>
+
+<p>
+  <a href="/transactions/new">New transaction</a>
+</p>
+
+
+  <% monthly_budget = (Category.total_budget)/12 %>
+  <p>Total monthly budget: £<%= monthly_budget  %></p>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Payee</th>
+      <th>Amount</th>
+      <th>Category</th>
+    </tr>
+    <% for transaction in @transactions %>
+    <tr>
+      <td><%= transaction.transaction_date %></td>
+      <td><%= transaction.payee %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= Category.find_by_id(transaction.category_id).name %></td>
+      <td> <form action = "/transactions/<%=transaction.id%>/delete" method = "POST">
+              <input type = "submit" value = "delete transaction" />
+            </form>
+      </td>
+      <td>
+      <a href = "/transactions/<%= transaction.id %>/edit">Edit transaction</a>
+      </td>
+
+    </tr>
+  <% end %>
+  </table>

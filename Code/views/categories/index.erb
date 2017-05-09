@@ -1,0 +1,39 @@
+<h1>All categories</h1>
+
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Budget</th>
+    <th>Number of transactions</th>
+    <th>Total spend</th>
+
+  </tr>
+  <% for category in @categories %>
+  <tr>
+    <td><a href = "/categories/<%=category.id%>"><%= category.name %></a></td>
+    <td><%= category.budget %></td>
+    <td><%= category.display_all_transactions.count()%></td>
+    <td><%= category.total_spend() %></td>
+    <td> <form action = "categories/<%=category.id%>/delete" method = "POST">
+            <% disabled = ""
+                value = "delete"
+                if category.is_in_use
+                  disabled = "disabled"
+                  value = "cannot delete"
+                end %>
+
+            <input type = "submit" value = "<%=value%>" <%=disabled%> />
+          </form>
+    </td>
+    <td>
+    <a href = "/categories/<%= category.id %>/edit">Edit category</a>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <a href="/categories/new">Create a new category</a>
+</p>
+
