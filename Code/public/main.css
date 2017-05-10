@@ -1,5 +1,5 @@
 body {
-  font-family:sans-serif;
+  font-family: verdana, tahoma, sans-serif;
   background-color:#EEEEEE;
 }
 
@@ -15,7 +15,7 @@ table, tr, th, td {
 }
 
 main {
-  height: 1200px;
+  height: 1600px;
 }
 
 .monthGreen {
@@ -26,6 +26,14 @@ main {
 }
 .monthRed {
   background-color: red;
+}
+
+a:visited {
+  color:#303030;
+}
+
+a {
+  color:#303030;
 }
 /*tr {
   border:1px black solid;
