@@ -1,12 +1,23 @@
-<h1>Input new category details</h1>
+<div class = "displayWrapper">
+  <div class = "displayHeader categoryPale">
+    <h1>Input new category details:</h1>
+  </div>
+</div> 
 
-<form action="/categories" method="post">
+<div class = "displayContent">
+  <div class = "displayFormDiv categoryPale">
 
-  <label for = "nameBox">Name</label>
-  <input id = "nameBox" type = "text" name = "name"/>
-
-  <label for = "budgetBox">Annual budget</label>
-  <input id = "budgetBox" type = "number" name = "budget" step = "1"/>
-
-  <input type='submit' value="Save category">
-</form>
+    <form action="/categories" method="post">
+      <div class = "displayFormRow">
+        <label for = "nameBox">Name</label>
+        <input id = "nameBox" type = "text" name = "name"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for = "budgetBox">Annual budget</label>
+        <input id = "budgetBox" type = "number" name = "budget" step = "1"/>
+      </div>
+      <div class = "displayFormRow">
+        <input type='submit' value="Save category">
+      </div>
+    </form>
+</div> <!-- displayContent -->

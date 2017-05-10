@@ -1,39 +1,52 @@
-<h1>All categories</h1>
+<div class = "displayWrapper">
+  <div class = "displayHeader categoryPale">
+    <h1>All categories</h1>
+  </div>
+</div>
+<div class = "displayContent">
+  <div class = "navbarDiv navbarDivNarrow">
+    <a href="/transactions/new">
+      <div class = "navbarElementDiv transactionLink">
+        ADD A NEW TRANSACTION
+      </div>
+    </a>
+    <a href="/categories/new">
+      <div class = "navbarElementDiv categoryLink">
+        ADD A NEW CATEGORY
+      </div>
+    </a>
+  </div>
+  <div class = "displayTableDiv categoryTable">
+    <table>
+      <tr>
+        <th>Category</th>
+        <th>Budget</th>
+        <th>Number of transactions</th>
+        <th>Total spend</th>
 
+      </tr>
+      <% for category in @categories %>
+      <tr>
+        <td><a href = "/categories/<%=category.id%>"><%= category.name %></a></td>
+        <td><%= category.budget %></td>
+        <td><%= category.display_all_transactions.count()%></td>
+        <td><%= category.total_spend() %></td>
+        <td> <form action = "categories/<%=category.id%>/delete" method = "POST">
+                <% disabled = ""
+                    value = "delete"
+                    if category.is_in_use
+                      disabled = "disabled"
+                      value = "cannot delete"
+                    end %>
 
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Budget</th>
-    <th>Number of transactions</th>
-    <th>Total spend</th>
-
-  </tr>
-  <% for category in @categories %>
-  <tr>
-    <td><a href = "/categories/<%=category.id%>"><%= category.name %></a></td>
-    <td><%= category.budget %></td>
-    <td><%= category.display_all_transactions.count()%></td>
-    <td><%= category.total_spend() %></td>
-    <td> <form action = "categories/<%=category.id%>/delete" method = "POST">
-            <% disabled = ""
-                value = "delete"
-                if category.is_in_use
-                  disabled = "disabled"
-                  value = "cannot delete"
-                end %>
-
-            <input type = "submit" value = "<%=value%>" <%=disabled%> />
-          </form>
-    </td>
-    <td>
-    <a href = "/categories/<%= category.id %>/edit">Edit category</a>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<p>
-  <a href="/categories/new">Create a new category</a>
-</p>
-
+                <button type = "submit" value = "<%=value%>" <%=disabled%>><%=value%></button>
+              </form>
+        </td>
+        <td class = "categoryTableLink">
+        <a href = "/categories/<%= category.id %>/edit">Edit category</a>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div> <!-- displayTableDiv -->
+</div> <!-- displayContent -->

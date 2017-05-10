@@ -1,19 +1,25 @@
-<h2>Update Category</h2>
-  <p>Update as required, and click "Save changes" when finished.</p>
+<div class = "displayWrapper">
+  <div class = "displayHeader categoryPale">
+    <h1>Update as required, then click "Save changes"</h1>
+  </div>
+</div> 
 
-
-<form action="/categories/<%= @category.id%>" method ="POST" >
-  <label for "iBox">Order number (office use only)</label>
-  <input id="idBox", type="text", name = "id", value="<%=@category.id%>" readonly />
-
-  <label for="nameBox" >Name: </label>
-  <input id = "nameBox", type = "text" name = "name" value="<%=@category.name%>"/>
-  <label for="budgetBox" >Budget: </label>
-  <input id = "budgetBox" type = "text" name = "budget" value="<%=@category.budget%>"/>
-  
-
-  <input type = "submit" value="Save changes"/>
-
-</form>
-
+<div class = "displayContent">
+  <div class = "displayFormDiv categoryPale">
+    <form action="/categories/<%= @category.id%>" method ="POST" >
+      <input id="idBox", type="text", name = "id", value="<%=@category.id%>" hidden />
+      <div class = "displayFormRow">
+        <label for="nameBox" >Name: </label>
+        <input id = "nameBox", type = "text" name = "name" value="<%=@category.name%>"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for="budgetBox" >Budget: </label>
+        <input id = "budgetBox" type = "text" name = "budget" value="<%=@category.budget%>"/>
+      </div>
+      <div class = "displayFormRow">
+        <input type = "submit" value="Save changes"/>
+      </div>
+    </form>
+  </div> <!-- displayFormDiv -->
+</div> <!-- displayContent -->
 

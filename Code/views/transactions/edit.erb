@@ -1,27 +1,38 @@
-<h2>Update transaction</h2>
-  <p>Update as required, and click "Save changes" when finished.</p>
+<div class = "displayWrapper">
+  <div class = "displayHeader transactionPale">
+    <h1>Update as required, then click "Save changes"</h1>
+  </div>
+</div> 
 
+<div class = "displayContent">
+  <div class = "displayFormDiv transactionPale">
 
-<form action="/transactions/<%= @transaction.id%>" method ="POST" >
-  <input id="idBox", type="hidden", name = "id", value="<%=@transaction.id%>" readonly class="narrowInput" />
-
-  <label for="dateBox" >Date (YYYY-MM-DD): </label>
-  <input id = "dateBox", type = "date" name = "transaction_date" value="<%=@transaction.transaction_date%>"/>
-  <label for="payeeBox" >Payee: </label>
-  <input id = "payeeBox" type = "text" name = "payee" value="<%=@transaction.payee%>"/>
-  
-  <label for = "amountBox">Amount:</label>
-  <input id = "payeeBox" type = "numbe" name = "amount" value="<%=@transaction.amount%>"/>
-
-  <label for = "categorySelect">Select a category:</label>
-    <select id = "categorySelect" name="category_id">
-      <% for category in @categories %>
-        <option value="<%= category.id %>"><%= category.name %></option>
-      <% end %>
-    </select>
-
-  <input type = "submit" value="Save changes"/>
-
-</form>
-
+    <form action="/transactions/<%= @transaction.id%>" method ="POST" >
+      <input id="idBox", type="hidden", name = "id", value="<%=@transaction.id%>" readonly class="narrowInput" />
+      <div class = "displayFormRow">
+        <label for="dateBox" >Date (YYYY-MM-DD): </label>
+        <input id = "dateBox", type = "date" name = "transaction_date" value="<%=@transaction.transaction_date%>"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for="payeeBox" >Payee: </label>
+        <input id = "payeeBox" type = "text" name = "payee" value="<%=@transaction.payee%>"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for = "amountBox">Amount:</label>
+        <input id = "payeeBox" type = "numbe" name = "amount" value="<%=@transaction.amount%>"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for = "categorySelect">Select a category:</label>
+          <select id = "categorySelect" name="category_id">
+            <% for category in @categories %>
+              <option value="<%= category.id %>"><%= category.name %></option>
+            <% end %>
+          </select>
+      </div>
+      <div class = "displayFormRow">
+        <input type = "submit" value="Save changes"/>
+      </div>
+    </form>
+  </div> <!-- displayFormDiv -->
+</div> <!-- displayContent -->
 

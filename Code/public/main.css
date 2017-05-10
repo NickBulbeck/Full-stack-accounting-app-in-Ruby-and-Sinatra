@@ -1,31 +1,163 @@
+/*******************************************************
+            MAJOR STRUCTURE
+********************************************************/
+
 body {
   font-family: verdana, tahoma, sans-serif;
   background-color:#EEEEEE;
 }
 
+main {
+  height:auto;
+  min-height: 1600px;
+  width:100%;
+}
+
+header {
+  position:fixed;
+  width:100%;
+}
+
+/*******************************************************
+            NAV BAR
+********************************************************/
+
+nav {
+  width:90%;
+  min-width:480px;
+  max-width:800px;
+  margin:auto;
+  opacity:0.8;
+}
+
+nav a {
+  display:inline-block;
+  margin:0;
+  padding:0;
+}
+
+.navbarDiv {
+  margin: auto;
+  background-color:#DDDDDD;
+  height:32px;
+  width: 559px;
+  font-weight:500;
+  padding-top:10px;
+}
+.navbarElementDiv {
+  display:inline;
+  height:42px;
+  background-color:#DDDDDD;
+  color:#404040;
+  padding:0px 10px 10px 10px;
+  margin:0px 0px 10px 0px;
+
+}
+.homeLink:hover {
+  border-bottom:5px #228B22 solid;
+}
+.categoryLink:hover {
+  border-bottom:5px #483D8B solid;
+}
+.transactionLink:hover {
+  border-bottom:5px #556B2F solid;
+}
+.monthLink:hover {
+  border-bottom:5px #4B0082 solid;
+}
+
+/* *****************************************************
+            SUMMARY INFO
+********************************************************/
+.summaryInfoDiv {
+  /*width:559px;*/
+  width:620px;
+  text-align:center;
+  height:auto;
+  background-color:#BBBBBB;
+  margin:auto;
+  padding-top:5px;
+  padding-bottom:5px;
+  opacity:0.8;
+}
+
+/* *****************************************************
+            BACKGROUND IMAGES
+********************************************************/
+.background0 {
+  background:none;
+  background-color: #181818;
+}
+.background1 {
+  background:url("images/1.jpg");
+  background-size: 100%;
+}
+.background2 {
+  background:url("images/2.jpg");
+  background-size: 100%;
+}
+.background3 {
+  background:url("images/3.jpg");
+  background-size: 100%;
+}
+.background4 {
+  background:url("images/4.jpg");
+  background-size: 100%;
+}
+.background5 {
+  background:url("images/5.jpg");
+  background-size: 100%;
+}
+.background6 {
+  background:url("images/6.jpg");
+  background-size: 100%;
+}
+.background7 {
+  background:url("images/7.jpg");
+  background-size: 100%;
+}
+.background8 {
+  background:url("images/8.jpg");
+  background-size: 100%;
+}
+.background9 {
+  background:url("images/9.jpg");
+  background-size: 100%;
+}
+.background10 {
+  background:url("images/10.jpg");
+  background-size: 100%;
+}
+.background11 {
+  background:url("images/11.jpg");
+  background-size: 100%;
+}
+.background12 {
+  background:url("images/12.jpg");
+  background-size: 100%;
+}
+.background13 {
+  background:url("images/13.jpg");
+  background-size: 100%;
+}
+
+/* *****************************************************
+            PARAGRAPH STYLES
+********************************************************/
+
+h1, h2, p {
+  color:#404040;
+}
+
+header p {
+  margin-bottom:5px;
+}
+
 h1 {
   font-size: 2em;
   font-weight: 900;
-  color: firebrick;
   margin-bottom: 10px;
-}
-
-table, tr, th, td {
-  border:1px black solid;
-}
-
-main {
-  height: 1600px;
-}
-
-.monthGreen {
-  background-color:green;
-}
-.monthAmber {
-  background-color: yellow;
-}
-.monthRed {
-  background-color: red;
+  line-height: 1.3em;
 }
 
 a:visited {
@@ -34,10 +166,175 @@ a:visited {
 
 a {
   color:#303030;
+  text-decoration:none;
 }
-/*tr {
-  border:1px black solid;
+
+/* *****************************************************
+            DISPLAYED CONTENT
+********************************************************/
+.displayWrapper {
+  position:fixed;
+  width:100%;
+  margin-top:130px;
 }
+.displayHeader {
+  width:90%;
+  margin: auto;
+  text-align:center;
+  background-color: #DDDDDD;
+  border: 1px #404040 solid;
+  border-radius:3px;
+  opacity:0.8;
+}
+.displayContent {
+  padding-top:200px;
+  width:90%;
+  margin:auto;
+}
+.navbarDivNarrow{
+  width:454px;
+  margin-top:10px;
+}
+.displayTableDiv {
+  padding-top:15px;
+  width:90%;
+  margin:auto;
+}
+
+/* *****************************************************
+            COlOUR SCHEMES
+********************************************************/
+.monthPale {
+  background-color: #D8BFD8;
+}
+.monthMedium {
+  background-color: #E6E6FA;
+}
+.monthDark {
+  background-color: #4B0082;
+}
+.monthTable {
+}
+.monthTable th {
+  background-color: #4B0082;
+  color:#D8BFD8;
+}
+.monthTable tr:nth-child(even) {
+  background-color: #D8BFD8;
+}
+.monthTable tr:nth-child(odd) {
+  background-color: #E6E6FA;
+}
+.monthTableLink:hover {
+  border-bottom:3px #4B0082 solid;
+}
+
+
+.categoryPale {
+  background-color: #B0C4DE;
+}
+.categoryMedium {
+  background-color: #ADD8E6;
+}
+.categoryDark {
+  background-color: #483D8B;
+}
+.categoryTable {
+}
+.categoryTable th {
+  background-color: #483D8B;
+  color:#B0C4DE;
+}
+.categoryTable tr:nth-child(even) {
+  background-color: #B0C4DE;
+}
+.categoryTable tr:nth-child(odd) {
+  background-color: #ADD8E6;
+}
+.categoryTableLink:hover {
+  border-bottom:3px #483D8B solid;
+}
+
+
+.transactionPale {
+  background-color: #EEE8AA;
+}
+.transactionMedium {
+  background-color: #8FBC8F;
+}
+.transactionDark {
+  background-color: #556B2F;
+}
+.transactionTable {
+}
+.transactionTable th {
+  background-color: #556B2F;
+  color:#EEE8AA;
+}
+.transactionTable tr:nth-child(even) {
+  background-color: #EEE8AA;
+}
+.transactionTable tr:nth-child(odd) {
+  background-color: #8FBC8F;
+}
+.transactionTableLink:hover {
+  border-bottom:3px #556B2F solid;
+}
+
+
+/* *****************************************************
+            TABLES 
+********************************************************/
+
+table, tr, th, td {
+  border:none;
+}
+
 td {
-  border:1px black solid;
-}*/
+  padding:5px 0px 5px 12px;
+}
+th {
+  padding:8px 0px 8px 12px;
+}
+table {
+  width:100%;
+}
+
+.ragGreen {
+  background-color:green;
+  border-bottom:1px #404040 solid;
+}
+.ragAmber {
+  background-color: yellow;
+  border-bottom:1px #404040 solid;
+}
+.ragRed {
+  background-color: red;
+  border-bottom:1px #404040 solid;
+}
+
+/* *****************************************************
+            INPUT FORMS 
+********************************************************/
+
+button {
+  padding:3px;
+}
+
+.displayFormDiv {
+  padding-top:40px;
+  padding-left:40px;
+  width:50%;
+  margin:auto;
+  border:1px #404040 solid;
+  border-radius: 3px;
+}
+.displayFormRow {
+  display:block;
+  height:40px;
+  width:auto;
+}
+
+
+
+

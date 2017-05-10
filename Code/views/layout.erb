@@ -14,37 +14,47 @@
       @prorata_budget = @total_budget / 12
       @current_month = Date.today.month.to_i
       @budget_to_date = @prorata_budget * @current_month
+      @image_pick = rand(13)+1
+      @background_class = "background#{@image_pick}"
 
       if @total_spend < @budget_to_date
-        @background_image = "'images/test.jpg'"
         @report_text = "You're within budget! There's a mountain view here to celebrate..."
       else
-      @background_image = ""
+      @background_class = "background0"
       @report_text = "You're not within budget. To show a nice background image... cut back on your spending!"
       end %>
-<!-- NTS: name the class above, and alter the class name -->
-  <main style = " background-image: url(<%= @background_image %>)" >
+<!-- NTS: name the class above, and alter the class name <%= @background_class%>)-->
+   <main class = "<%= @background_class%>" >
     <header>
-      <p>Total recorded spending for 2017: £<%=@total_spend%></p>
-      <p>Total categorised budget for 2017: £<%=@total_budget%></p>
-      <p>Currently in month <%=@current_month%>; pro-rata budget to date: £<%=@budget_to_date%></p>
-      <p><%=@report_text%></p>
       <nav>
-        <ul>
-          <li>
-            <a href="/categories">View all categories</a>
-          </li>
-          <li>
-            <a href="/transactions">View all transactions</a>
-          </li>
-          <li>
-            <a href="/months">View all months</a>
-          </li>
-          <li>
-            <a href="/">Home</a>
-          </li>
-        </ul>
+        <div class = "navbarDiv">
+          <a href = "/">
+            <div class = "navbarElementDiv homeLink">
+              HOME
+            </div>
+          </a>
+          <a href="/categories">
+            <div class = "navbarElementDiv categoryLink">
+              CATEGORY VIEW
+            </div>
+          </a>
+          <a href="/transactions">
+            <div class = "navbarElementDiv transactionLink">
+              TRANSACTION VIEW
+            </div>
+          </a>
+          <a href="/months">
+            <div class = "navbarElementDiv monthLink">
+              MONTH VIEW
+            </div>
+          </a>
+        </div>
       </nav>
+      <div class = summaryInfoDiv>
+        <p>Total recorded spending for 2017: £<%=@total_spend%></p>
+        <p>Total categorised budget for 2017: £<%=@total_budget%></p>
+        <p>Currently in month <%=@current_month%>; pro-rata budget to date: £<%=@budget_to_date%></p>
+      </div>
     </header>
     <section>
     <%= yield %>

@@ -1,22 +1,35 @@
-<h1>Input new transaction details</h1>
+<div class = "displayWrapper">
+  <div class = "displayHeader transactionPale">
+    <h1>Input new transaction details:</h1>
+  </div>
+</div> 
 
-<form action="/transactions" method="post">
-
-  <label for = "dateBox">Date (YYYY-MM-DD)</label>
-  <input id = "dateBox" type = "date" name = "transaction_date"/>
-
-  <label for = "payeeBox">Payee</label>
-  <input id = "payeeBox" type = "text" name = "payee"/>
-
-  <label for = "amountBox">amount</label>
-  <input id = "amountBox" type = "number" name = "amount" step = "0.01"/>
-
-  <label for = "categorySelect">Select a category:</label>
-      <select id = "categorySelect" name="category_id">
-        <% for category in @categories %>
-        <option value="<%= category.id %>"><%= category.name %></option>
-        <% end %>
-      </select>
-    
-    <input type='submit' value="Save transaction">
-</form>
+<div class = "displayContent">
+  <div class = "displayFormDiv transactionPale">
+    <form action="/transactions" method="post">
+      <div class = "displayFormRow">
+        <label for = "dateBox">Date (YYYY-MM-DD)</label>
+        <input id = "dateBox" type = "date" name = "transaction_date"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for = "payeeBox">Payee</label>
+        <input id = "payeeBox" type = "text" name = "payee"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for = "amountBox">amount</label>
+        <input id = "amountBox" type = "number" name = "amount" step = "0.01"/>
+      </div>
+      <div class = "displayFormRow">
+        <label for = "categorySelect">Select a category:</label>
+            <select id = "categorySelect" name="category_id">
+              <% for category in @categories %>
+              <option value="<%= category.id %>"><%= category.name %></option>
+              <% end %>
+            </select>
+      </div>
+      <div class = "displayFormRow">
+        <input type='submit' value="Save transaction">
+      </div>
+    </form>
+  </div> <!-- displayFormDiv -->
+</div> <!-- displayContent -->

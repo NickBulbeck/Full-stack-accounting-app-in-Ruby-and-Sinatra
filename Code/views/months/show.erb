@@ -1,33 +1,47 @@
-<h1><%=@month.name%></h1>
-
-<p>
-  <a href="/transactions/new">New transaction</a>
-</p>
-
-
+<div class = "displayWrapper ">
+  <div class = "displayHeader transactionPale">
   <% monthly_budget = (Category.total_budget)/12 %>
-  <p>Total monthly budget: £<%= monthly_budget  %></p>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Payee</th>
-      <th>Amount</th>
-      <th>Category</th>
-    </tr>
-    <% for transaction in @transactions %>
-    <tr>
-      <td><%= transaction.transaction_date %></td>
-      <td><%= transaction.payee %></td>
-      <td><%= transaction.amount %></td>
-      <td><%= Category.find_by_id(transaction.category_id).name %></td>
-      <td> <form action = "/transactions/<%=transaction.id%>/delete" method = "POST">
-              <input type = "submit" value = "delete transaction" />
-            </form>
-      </td>
-      <td>
-      <a href = "/transactions/<%= transaction.id %>/edit">Edit transaction</a>
-      </td>
+    <h1>Transactions for <%=@month.name%> (budget £<%=monthly_budget %>)</h1>
+  </div>
+</div>
 
-    </tr>
-  <% end %>
-  </table>
+<div class = "displayContent">
+  <div class = "navbarDiv navbarDivNarrow">
+    <a href="/transactions/new">
+      <div class = "navbarElementDiv transactionLink">
+        ADD A NEW TRANSACTION
+      </div>
+    </a>
+    <a href="/categories/new">
+      <div class = "navbarElementDiv categoryLink">
+        ADD A NEW CATEGORY
+      </div>
+    </a>
+  </div>
+  <div class = "displayTableDiv transactionTable">
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Payee</th>
+        <th>Amount</th>
+        <th>Category</th>
+      </tr>
+      <% for transaction in @transactions %>
+      <tr>
+        <td><%= transaction.transaction_date %></td>
+        <td><%= transaction.payee %></td>
+        <td><%= transaction.amount %></td>
+        <td><%= Category.find_by_id(transaction.category_id).name %></td>
+        <td> <form action = "/transactions/<%=transaction.id%>/delete" method = "POST">
+                <button type = "submit" value = "delete transaction">Delete</button>
+              </form>
+        </td>
+        <td>
+        <td class = "transactionTableLink"><a href = "/transactions/<%= transaction.id %>/edit">Edit transaction</a>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div> <!-- displayTableDiv -->
+</div> <!-- displayContent -->
+
