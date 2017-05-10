@@ -17,7 +17,7 @@ get '/' do
     @budget_to_date = @prorata_budget * @current_month
 
     if @total_spend < @budget_to_date
-      @report_text = "You're within budget! There's a mountain view here to celebrate..."
+      @report_text = "You're within budget! Here's a mountain view to celebrate..."
     else
     @report_text = "You're not within budget. To show a nice background image... cut back on your spending!"
       end

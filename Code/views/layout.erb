@@ -17,11 +17,9 @@
       @image_pick = rand(13)+1
       @background_class = "background#{@image_pick}"
 
-      if @total_spend < @budget_to_date
-        @report_text = "You're within budget! Here's a mountain view to celebrate..."
-      else
-      @background_class = "background0"
-      @report_text = "You're not within budget. To show a nice background image... cut back on your spending!"
+      if @total_spend > @budget_to_date
+        @background_class = "background0"
+        @report_text = "You're not within budget. To show a nice background image... cut back on your spending!"
       end %>
 <!-- NTS: name the class above, and alter the class name <%= @background_class%>)-->
    <main class = "<%= @background_class%>" >
