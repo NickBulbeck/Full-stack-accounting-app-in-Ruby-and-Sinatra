@@ -3,13 +3,11 @@
 
 
 <form action="/categories/<%= @category.id%>" method ="POST" >
-<!-- first name, last name, topping and quantity -->
   <label for "iBox">Order number (office use only)</label>
-  <input id="idBox", type="text", name = "id", value="<%=@category.id%>" readonly class="narrowInput" />
+  <input id="idBox", type="text", name = "id", value="<%=@category.id%>" readonly />
 
   <label for="nameBox" >Name: </label>
   <input id = "nameBox", type = "text" name = "name" value="<%=@category.name%>"/>
-<!-- for and id must match; name must match the instance variable name in the database -->
   <label for="budgetBox" >Budget: </label>
   <input id = "budgetBox" type = "text" name = "budget" value="<%=@category.budget%>"/>
   
